@@ -1,5 +1,7 @@
-import { ChatHistory } from './components/chat-history';
+'use client';
+
 import { InputName } from './components/input-name';
+import { ContextInput } from './contexts/context-input';
 
 export default function Home() {
   return (
