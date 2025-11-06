@@ -13,13 +13,14 @@ export function InputName() {
       <div className="flex">
         <input
           className="py-4 px-8 rounded-md m-2 bg-linear-to-t to-blue-400 from-indigo-300
-        placeholder:text-indigo-950 border border-indigo-950"
+        placeholder:text-indigo-950 border border-indigo-950 outline-0"
           onChange={(e) => context?.setName(e.target.value)}
           value={context?.name}
           placeholder="Digite seu Nome"
         />
         <Link
           href="/chat-room"
+          onNavigate={() => {}}
           className="py-4 px-8 rounded-md m-2 bg-linear-to-r to-gray-300 from-teal-300
           placeholder:text-teal-950 cursor-pointer hover:opacity-80 border border-teal-950"
         >

@@ -1,23 +1,36 @@
 'use client';
 
-interface InputProps {
+export interface InputProps {
   value: string;
   onChange: (value: string) => void;
+  onSubmit: () => void;
   placeholder?: string;
   className?: string;
 }
 
-export function Input({ value, onChange, placeholder, className }: InputProps) {
+export function Input({
+  value,
+  onChange,
+  placeholder,
+  className,
+  onSubmit,
+}: InputProps) {
+  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter' && onSubmit) {
+      onSubmit();
+    }
+  };
+
   return (
     <div>
       <input
         type="text"
         value={value}
         placeholder={placeholder}
+        onKeyUp={handleKeyUp}
         onChange={(e) => onChange(e.target.value)}
         className={className}
       />
-      <p className="text-black">{}</p>
     </div>
   );
 }
