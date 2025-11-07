@@ -15,7 +15,7 @@ export function Input({
   className,
   onSubmit,
 }: InputProps) {
-  function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
+  function handleKeyUp(e: React.KeyboardEvent) {
     if (e.key === 'Enter' && onSubmit) {
       onSubmit();
     }
