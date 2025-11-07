@@ -1,9 +1,13 @@
 'use client';
 
 import { createContext, ReactNode, useContext, useState } from 'react';
-import { PropsInput } from '../types/type-context';
 
-export const InputContext = createContext<PropsInput | null>(null);
+export interface InputProps {
+  name: string;
+  setName: (name: string) => void;
+}
+
+export const InputContext = createContext<InputProps | null>(null);
 
 export function ContextInput({ children }: { children: ReactNode }) {
   const [name, setName] = useState('');

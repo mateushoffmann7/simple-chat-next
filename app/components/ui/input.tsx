@@ -15,11 +15,11 @@ export function Input({
   className,
   onSubmit,
 }: InputProps) {
-  const handleKeyUp = (e: React.KeyboardEvent<HTMLInputElement>) => {
+  function handleKeyUp(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === 'Enter' && onSubmit) {
       onSubmit();
     }
-  };
+  }
 
   return (
     <div>

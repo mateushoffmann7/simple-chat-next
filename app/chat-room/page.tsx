@@ -1,7 +1,6 @@
 'use client';
 
 import { ChatHistory } from '../components/chat-history';
-import { CardChat } from '../components/ui/chat-card';
 
 export default function ChatRoom() {
   return (
