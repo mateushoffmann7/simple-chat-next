@@ -5,16 +5,19 @@ import { ReactNode } from 'react';
 
 interface PropsCard {
   messages: MessageProps[];
+  onMessageDel: (id: number) => void;
   children: ReactNode;
 }
 
 export interface MessageProps {
+  id: number;
   text: string;
   sender: string;
 }
 
-export function CardChat({ children, messages }: PropsCard) {
+export function CardChat({ children, messages, onMessageDel }: PropsCard) {
   const context = useContextInput();
+
   return (
     <div>
       <div className="bg-indigo-200 h-[80vh] w-[500px] flex flex-col items-center justify-end rounded">
@@ -22,8 +25,12 @@ export function CardChat({ children, messages }: PropsCard) {
           {messages.map((msg, index) => {
             const isBot = msg.sender === 'Bot';
             return (
-              <div key={index} className={isBot ? 'flex justify-end' : ''}>
-                <div className="w-[200px] bg-indigo-100 rounded p-2">
+              <div
+                key={index}
+                className={isBot ? 'flex justify-end' : ''}
+                onClick={() => onMessageDel(msg.id)}
+              >
+                <div className="w-[200px] bg-indigo-100 rounded p-2 cursor-pointer hover:bg-red-200">
                   <h1 className="font-bold">{msg.sender}</h1>
                   <p>{msg.text}</p>
                 </div>

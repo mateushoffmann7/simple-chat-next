@@ -6,6 +6,7 @@ import { useContextInput } from '../contexts/context-input';
 import { CardChat } from './ui/chat-card';
 
 export interface MessageProps {
+  id: number;
   text: string;
   sender: string;
 }
@@ -19,19 +20,33 @@ export function ChatHistory() {
   const [messages, setMessages] = useState<MessageProps[]>([]);
 
   const handleSubmit1 = () => {
-    setMessages([...messages, { text: input1, sender: `${context?.name}` }]);
+    setMessages([
+      ...messages,
+      { id: messages.length + 1, text: input1, sender: `${context?.name}` },
+    ]);
     setInput1('');
   };
 
   const handleSubmit2 = () => {
-    setMessages([...messages, { text: input2, sender: 'Bot' }]);
+    setMessages([
+      ...messages,
+      { id: messages.length + 1, text: input2, sender: 'Bot' },
+    ]);
     setInput2('');
   };
+
+  function handleDeleteMessage(id: number) {
+    setMessages(
+      messages.filter((e) => {
+        return e.id !== id;
+      }),
+    );
+  }
 
   return (
     <div>
       <div>
-        <CardChat messages={messages}>
+        <CardChat messages={messages} onMessageDel={handleDeleteMessage}>
           <div className="p-4">
             <Input
               value={input1}
